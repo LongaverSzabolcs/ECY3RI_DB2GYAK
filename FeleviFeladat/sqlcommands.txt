@@ -1,0 +1,43 @@
+CREATE TABLE guests (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	age INT NOT NULL,
+	gender VARCHAR(255) NOT NULL,
+	arrival DATE NOT NULL,
+	email VARCHAR(255) DEFAULT NULL,
+	phone INT NOT NULL
+);
+
+CREATE TABLE partners (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	guest_id INT UNIQUE,
+	name VARCHAR(255) NOT NULL,
+	age INT NOT NULL,
+	gender VARCHAR(255) NOT NULL,
+	arrival DATE NOT NULL,
+	FOREIGN KEY (guest_id) REFERENCES guests(id)
+);
+
+INSERT INTO guests (id, name, age, gender, arrival, email, phone)
+VALUES 
+  (1, 'Alice B.', 30, 'No', '2025-06-01', 'aliceinchains@example.com', 123456789),
+  (2, 'John L.', 35, 'Ferfi', '2025-06-03', 'john@lennon.com', 987654321),
+  (3, 'Carl J.', 28, 'Ferfi', '2025-06-01', NULL, 555555555),
+  (4, 'Diana A.', 27, 'No', '2025-06-03', 'dianaa@example.com', 111222333),
+  (5, 'Ethan W.', 40, 'Ferfi', '2025-06-01', NULL, 444555666),
+  (6, 'Louie G.', 33, 'Ferfi', '2025-06-02', 'louieg@newegg.com', 777888999),
+  (7, 'Dan N.', 59, 'Ferfi', '2025-06-01', 'dandadan@example.com', 101010101),
+  (8, 'Deborah K.', 22, 'No', '2025-06-04', NULL, 202020202),
+  (9, 'Ian K.', 81, 'Ferfi', '2025-06-02', 'ianiank@gmail.com', 303030303),
+  (10, 'Julia P.', 52, 'No', '2025-06-05', 'juliette@gmail.com', 404040404);
+
+INSERT INTO partners (id, guest_id, name, age, gender, arrival)
+VALUES 
+  (1, 1, 'Zorro P.', 32, 'Ferfi', '2025-06-01'),
+  (2, 2, 'Yoko O.', 33, 'No', '2025-06-04'),
+  (3, 4, 'Clark Z.', 28, 'Ferfi', '2025-06-08'),
+  (4, 6, 'Laura G.', 35, 'No', '2025-06-12'),
+  (5, 7, 'Amal C.', 44, 'No', '2025-06-14'),
+  (6, 9, 'Patricia S.', 80, 'No', '2025-06-18');
+
+
